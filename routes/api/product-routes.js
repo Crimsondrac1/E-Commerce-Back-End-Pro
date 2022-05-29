@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// find a single product by its `id`
+// find a single product by its `id`.
 // be sure to include its associated Category and Tag data
 router.get("/:id", (req, res) => {
   Product.findOne({
