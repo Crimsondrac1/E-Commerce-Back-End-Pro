@@ -122,16 +122,16 @@ router.put("/:id", (req, res) => {
           };
         });
 
-      const productTagsToRemove = productTags
+      const pTagsRemove = productTags
         .filter(({ tag_id }) => !req.body.tagIds.includes(tag_id))
         .map(({ id }) => id);
 
       return Promise.all([
-        ProductTag.destroy({ where: { id: productTagsToRemove } }),
+        ProductTag.destroy({ where: { id: pTagsRemove } }),
         ProductTag.bulkCreate(newProductTags),
       ]);
     })
-    .then((updatedProductTags) => res.json(updatedProductTags))
+    .then((updatePTags) => res.json(updatePTags))
     .catch((err) => {
       // console.log(err);
       res.status(400).json(err);
